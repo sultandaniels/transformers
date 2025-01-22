@@ -824,12 +824,10 @@ class GPT2Model(GPT2PreTrainedModel):
         if inputs_embeds is None:
             inputs_embeds = self.wte(input_ids)
 
-        if self.config.use_pos_emb:
-            print("Using positional embeddings")
+        if self.config.use_pos_emb: # add position embeddings
             position_embeds = self.wpe(position_ids)
             hidden_states = inputs_embeds + position_embeds
-        else:
-            print("No positional embeddings")
+        else: # no position embeddings
             hidden_states = inputs_embeds
 
         # Attention mask.
